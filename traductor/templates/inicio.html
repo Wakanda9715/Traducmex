@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+        type="text/css"
+        rel="shortcut icon"
+        href="{% static 'imgs/favicon.ico' %}" />
+    <title>TRADUCMEX</title>
+
+    <link
+        href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
+        rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN"
+        crossorigin="anonymous" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@500&display=swap"
+        rel="stylesheet" />
+    <link
+        rel="stylesheet"
+        href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center first_row">
+            <div class="col-md-12">
+                <h1 class="text-center fw-bold">
+                    TRADUCMEX
+                    <br />
+                    <img
+                        src="{% static 'imgs/logo.png' %}"
+                        style="width: 100px"
+                        alt="logo traductor" />
+                    <hr />
+                </h1>
+            </div>
+        </div>
+
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="card">
+                    <form name="mainTranslationForm" id="mainTranslationForm" action="" method="GET">
+                        {% csrf_token %}
+                        <div class="card-body">
+                            <div class="form-group mb-4">
+                                <label for="lenguajeOrigen">Idioma de origen</label>
+                                <div>
+                                    <input type="hidden" name="lenguajeOrigen" id="lenguajeOrigen" value="es">
+                                    <span class="form-control-plaintext fw-bold">México</span>
+                                </div>
+                            </div>
+                            <div class="form-group position-relative">
+                                <label for="sourceText">Palabra en México:</label>
+                                <textarea
+                                    class="form-control"
+                                    name="sourceText" id="sourceText"
+                                    rows="6"
+                                    placeholder="Ingrese palabra a buscar en BD..."></textarea>
+                                <button type="button" class="btn btn-link microphone-icon">
+                                    <span class="mic-circle">
+                                        <i class="bi bi-mic"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="card-footer d-flex justify-content-end border-0">
+                            {# REMUEVE CUALQUIER COMENTARIO O LÍNEA DEL SELECT translationSource AQUÍ #}
+                            {# SI HAY UN <SELECT ID="TRANSLATIONSOURCE">, BÓRRALO #}
+
+                            <button type="submit" class="btn btn-primary" id="translateBtn">
+                                Traducir <i class="bi bi-arrow-right-circle"></i>
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+            <div class="col-md-6">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="form-group mb-4">
+                            <label for="lenguajeDestino">País de destino:</label>
+                            <select
+                                class="form-control"
+                                name="lenguajeDestino"
+                                id="lenguajeDestino">
+                                <option value="">Seleccione un país</option> {# Opción por defecto #}
+                                {% for i in idiomas %}
+                                    {# ¡AHORA LOS PREFIJOS COINCIDEN CON TU BASE DE DATOS! #}
+                                    {% if i.prefijo == 'ar' or i.prefijo == 'ca' or i.prefijo == 'vz' or i.prefijo == 'cl' %}
+                                        <option value="{{ i.prefijo }}">
+                                            {{ i.idioma }} ({{ i.prefijo|upper }}) {# Usamos upper para mostrar "AR", "CA", etc. #}
+                                        </option>
+                                    {% endif %}
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <div class="form-group position-relative">
+                            <label for="resultTranslatedText">Traducción encontrada (BD):</label>
+                            <textarea
+                                class="form-control"
+                                name="resultTranslatedText"
+                                id="resultTranslatedText"
+                                rows="6"
+                                disabled
+                                placeholder="Resultado de la traducción..."></textarea>
+                            <button type="button" class="btn btn-link copy-icon">
+                                <i class="bi bi-copy"></i>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/axios/1.6.7/axios.min.js">
+    </script>
+    <script src="{% static 'js/script.js' %}"></script>
+</body>
+</html>

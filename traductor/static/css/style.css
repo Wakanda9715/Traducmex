@@ -1,0 +1,120 @@
+html,
+body {
+  height: 100%;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #00000083; 
+}
+
+.form-control {
+  background-color: #6A1B9A !important; /* Fondo morado forzado */
+  color: #FFFFFF !important;            /* Texto blanco forzado */
+}
+
+/* También para el placeholder, para que no se vea el texto oscuro sobre morado */
+.form-control::placeholder {
+  color: #E0E0E0 !important;
+  opacity: 1 !important;
+}
+
+/* Para el campo deshabilitado (el de resultado) */
+.form-control:disabled { /* Bootstrap usa :disabled en lugar de [disabled] a veces */
+  background-color: #8E24AA !important; /* Morado diferente para deshabilitado */
+  color: #FFFFFF !important;
+  opacity: 1 !important; /* Asegura que no sea transparente */
+}
+
+/* Si aún tienes problemas con el :focus (opcional, pero buena práctica) */
+.form-control:focus {
+  background-color: #7B1FA2 !important; /* Un morado ligeramente diferente cuando enfocado */
+  color: #FFFFFF !important;
+}
+
+
+.container {
+  border-radius: 5px;
+  width: 100%;
+  max-width: 1200px;
+  padding: 20px;
+  background-color: #00000083;
+  box-shadow: 0 10px 20px rgba(2, 6, 255, 0.642), 0 6px 6px rgba(2, 6, 255, 0.642);
+}
+.card {
+  border: none !important;
+  border-radius: 0% !important;
+  border-right: 1px solid #dee2e6 !important;
+}
+.card-footer {
+  background-color: #fff !important;
+}
+textarea {
+  border: none;
+  resize: none;
+  outline: none;
+  background-color: #6A1B9A; /* Morado para el fondo de los textareas */
+  color: #FFFFFF; /* Blanco para el texto dentro del textarea */
+}
+textarea:focus {
+  outline: none;
+  background-color: #7B1FA2; /* Un morado ligeramente diferente cuando está enfocado para dar feedback */
+}
+textarea::placeholder {
+  color: #E0E0E0; /* Blanco muy claro para el placeholder */
+  opacity: 1; /* Importante para asegurar que el color se aplique en todos los navegadores */
+}
+textarea[disabled] {
+  background-color: #8E24AA; /* Un morado un poco más claro o diferente para el textarea deshabilitado */
+  color: #FFFFFF; /* Mantener las letras blancas */
+  opacity: 1; /* Asegurar que no se vea translúcido si Bootstrap o el navegador añaden opacidad */
+}
+
+.position-relative {
+  position: relative;
+}
+
+.copy-icon {
+  position: absolute;
+  bottom: 8px;
+  right: 8px;
+  z-index: 1; /* Asegura que el botón esté por encima del textarea */
+}
+.microphone-icon {
+  position: absolute;
+  bottom: 0px;
+  left: -10px;
+  z-index: 1;
+  font-size: 18px;
+}
+
+.mic-circle {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 30px; /* Ajusta el tamaño del círculo según sea necesario */
+  height: 30px; /* Ajusta el tamaño del círculo según sea necesario */
+  border-radius: 50%;
+  background-color: #dddddd; /* Color gris */
+}
+#translateBtn {
+  background-color: #ffa200;
+}
+.bi-arrow-right-circle {
+  font-size: 20px;
+}
+.bi-arrow-right-circle:hover {
+  color: #ce0808;
+  transition: all 0.5s;
+}
+.bi-copy {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.first_row .col-md-12 h1 {
+  color: #f0f0f0; /* Blanco */
+}
