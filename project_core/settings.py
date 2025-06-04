@@ -79,12 +79,16 @@ WSGI_APPLICATION = 'project_core.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.mysql',  # ENGINE es motor de BD
-        'NAME': 'bd_traductor',
-                'USER': 'root',
-                'PASSWORD': '',
-                'HOST': '127.0.0.1',
-                'PORT': '3306',
+        'ENGINE': 'django.db.backends.mysql', # Sigues usando MySQL
+        'NAME': os.environ.get('MYSQL_DATABASE_NAME', 'bd_traductor_dev'), # Valor por defecto para desarrollo
+        'USER': os.environ.get('MYSQL_DATABASE_USER', 'root'), # Valor por defecto para desarrollo
+        'PASSWORD': os.environ.get('MYSQL_DATABASE_PASSWORD', ''), # Valor por defecto para desarrollo
+        'HOST': os.environ.get('MYSQL_DATABASE_HOST', '127.0.0.1'), # Valor por defecto para desarrollo
+        'PORT': os.environ.get('MYSQL_DATABASE_PORT', '3306'), # Valor por defecto para desarrollo
+        'OPTIONS': {
+            'init_command': "SET sql_mode='STRICT_TRANS_TABLES'", # Puede ser necesario para MySQL en Django
+            # Es posible que necesites ssl_ca, ssl_cert, ssl_key si tu proveedor de MySQL en la nube lo requiere
+        },
     }
 }
 
