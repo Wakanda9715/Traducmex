@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'project_core.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.mysql', # Sigues usando MySQL
-        'NAME': os.environ.get('MYSQL_DATABASE_NAME', 'bd_traductor_dev'), # Valor por defecto para desarrollo
+        'NAME': os.environ.get('MYSQL_DATABASE_NAME', 'bd_traductor'), # Valor por defecto para desarrollo
         'USER': os.environ.get('MYSQL_DATABASE_USER', 'root'), # Valor por defecto para desarrollo
         'PASSWORD': os.environ.get('MYSQL_DATABASE_PASSWORD', ''), # Valor por defecto para desarrollo
         'HOST': os.environ.get('MYSQL_DATABASE_HOST', '127.0.0.1'), # Valor por defecto para desarrollo
